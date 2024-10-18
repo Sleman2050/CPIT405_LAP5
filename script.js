@@ -492,13 +492,21 @@ document.addEventListener("DOMContentLoaded", () => {
     function filterByName() {
         let word = searchInput.value.toLowerCase();
         let rows = tableBody.querySelectorAll("tr");
-        doFilter(rows, 0, word); // Filter by name (0 index)
+        doFilter(rows, 0, word); 
     }
 //Filter teames
      function filterByTeam() {
         let selectedTeam = teamFilter.value.toLowerCase();
         let rows = tableBody.querySelectorAll("tr");
-        doFilter(rows, 1, selectedTeam); 
+
+         for (let i = 0; i < rows.length; i++) {
+            rows[i].style.display = ""; 
+        }
+
+        if (selectedTeam !== "all") {
+            doFilter(rows, 1, selectedTeam); 
+        }
+       
     }
     function doFilter(rows, column, word) {
         for (let i = 0; i < rows.length; i++) {
